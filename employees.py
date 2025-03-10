@@ -93,6 +93,7 @@ class Employee(ABC):
             self.relationships[other.name] += 1
             self.happiness -= 1
     def daily_expense(self):
+        """deducts daily expense and removes happiness"""
         self.happiness -= 1
         self.savings -= DAILY_EXPENSE
     def __str__(self):
@@ -111,11 +112,6 @@ class Manager(Employee):
                 self.relationships[i] -= 1
         else:
             self.happiness += 1
-    def interact(self, other):
-        super().interact(other)
-        if other.happiness < HAPPINESS_THRESHOLD and \
-        self.happiness < HAPPINESS_THRESHOLD:
-            self.happiness -= 1
 class TemporaryEmployee(Employee):
     """
     A subclass of Employee representing a temporary employee.
