@@ -46,44 +46,44 @@ class Employee(ABC):
         self.salary = salary
     @property
     def name(self):
-        """"""
+        """employee's name"""
         return self.__name
     @property
     def manager(self):
-        """"""        
+        """employee's manager"""        
         return self.__manager
     @property
     def performance(self):
-        """"""
+        """employee's performance"""
         return self.__performance
     @performance.setter
     def performance(self, value):
-        """"""
+        """Sets employee's performance"""
         self.__performance = max(PERCENTAGE_MIN, min(PERCENTAGE_MAX, value))
     @property
     def happiness(self):
-        """"""
+        """employee's happiness"""
         return self.__happiness
     @happiness.setter
     def happiness(self, value):
-        """"""
+        """Sets employee's happiness"""
         self.__happiness = max(PERCENTAGE_MIN, min(PERCENTAGE_MAX, value))
     @property
     def salary(self):
-        """"""
+        """employee's salary"""
         return self.__salary
     @salary.setter
     def salary(self, value):
-        """"""
+        """Sets employee's salary"""
         if value < 0:
             raise ValueError(SALARY_ERROR_MESSAGE)
         self.__salary = value
     @abstractmethod
     def work(self):
-        """"""
+        """Abstract method"""
         pass
     def interact(self, other):
-        """"""
+        """Interaction with other employees"""
         if other.name not in self.relationships:
             self.relationships[other.name] = 0
         if self.relationships[other.name] > RELATIONSHIP_THRESHOLD:
@@ -103,8 +103,7 @@ class Manager(Employee):
     """
     A subclass of Employee representing a manager.
     """
-    def work(self):
-        """"""
+    def work(self): 
         change = random.randint(-5, 5)
         self.performance += change
         if change <= 0:
