@@ -90,14 +90,14 @@ class Employee(ABC):
         elif self.happiness >= HAPPINESS_THRESHOLD and other.happiness >= HAPPINESS_THRESHOLD:
             self.relationships[other.name] += 1
         else:
-            self.relationships[other.name] += 1
+            self.relationships[other.name] -= 1
             self.happiness -= 1
     def daily_expense(self):
         """deducts daily expense and removes happiness"""
         self.happiness -= 1
         self.savings -= DAILY_EXPENSE
     def __str__(self):
-        return f"{self.name}\n\tSalary: ${self.salary}\n\tSavings: ${self.savings}
+        return f"{self.name}\n\tSalary: ${self.salary}\n\tSavings: ${self.savings} \
         \n\tHappiness: {self.happiness}%\n\tPerformance: {self.performance}%"
 class Manager(Employee):
     """
