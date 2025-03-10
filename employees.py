@@ -81,7 +81,6 @@ class Employee(ABC):
     @abstractmethod
     def work(self):
         """Abstract method"""
-        pass
     def interact(self, other):
         """Interaction with other employees"""
         if other.name not in self.relationships:
@@ -103,7 +102,7 @@ class Manager(Employee):
     """
     A subclass of Employee representing a manager.
     """
-    def work(self): 
+    def work(self):
         change = random.randint(-5, 5)
         self.performance += change
         if change <= 0:
@@ -115,7 +114,7 @@ class Manager(Employee):
     def interact(self, other):
         super().interact(other)
         if other.happiness < HAPPINESS_THRESHOLD and \
-        self.happiness < HAPPINESS_THESHOLD:
+        self.happiness < HAPPINESS_THRESHOLD:
             self.happiness -= 1
 class TemporaryEmployee(Employee):
     """
