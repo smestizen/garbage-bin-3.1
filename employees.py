@@ -94,11 +94,9 @@ class Employee(ABC):
             self.relationships[other.name] += 1
             self.happiness -= 1
     def daily_expense(self):
-        """"""
         self.happiness -= 1
         self.savings -= DAILY_EXPENSE
     def __str__(self):
-        """"""
         return f"{self.name}\n\tSalary: ${self.salary}\n\tSavings: ${self.savings} \
         \n\tHappiness: {self.happiness}%\n\tPerformance: {self.performance}%"
 class Manager(Employee):
@@ -115,12 +113,16 @@ class Manager(Employee):
                 self.relationships[i] -= 1
         else:
             self.happiness += 1
+    def interact(self, other):
+        super().interact(other)
+        if other.happiness < HAPPINESS_THRESHOLD and \
+        self.happiness < HAPPINESS_THESHOLD:
+            self.happiness -= 1
 class TemporaryEmployee(Employee):
     """
     A subclass of Employee representing a temporary employee.
     """
     def work(self):
-        """"""
         change = random.randint(-15, 15)
         self.performance += change
         if change <= 0:
@@ -128,7 +130,6 @@ class TemporaryEmployee(Employee):
         else:
             self.happiness += 1
     def interact(self, other):
-        """"""
         super().interact(other)
         if isinstance(other, Manager):
             if other.happiness > HAPPINESS_THRESHOLD and \
@@ -144,13 +145,11 @@ class PermanentEmployee(Employee):
     A subclass of Employee representing a permanent employee.
     """
     def work(self):
-        """"""
         change = random.randint(-10, 10)
         self.performance += change
         if change >= 0:
             self.happiness += 1
     def interact(self, other):
-        """"""
         super().interact(other)
         if isinstance(other, Manager):
             if other.happiness > HAPPINESS_THRESHOLD and self.performance > \
